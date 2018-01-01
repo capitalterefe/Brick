@@ -22,7 +22,7 @@ Please take a look at our contribution documentation for instructions on how to 
 Interested in where Brick is heading in the future? Check out the Roadmap
 
 # Project History, Credits & Inspiration
-History:
+History: Comming soon
 Credits: Serenity Framework
 
 # Troubleshooting
