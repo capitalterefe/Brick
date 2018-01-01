@@ -1,5 +1,7 @@
 package com.brick.reusablecomponents;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -15,10 +17,9 @@ public class Hook extends PageObject {
 
 	public static void setPropertyFiles() {
 		try {
-			System.setProperty("webdriver.chrome.driver", "$driver_location");
 			properties=new Properties();
 			properties.load(Hook.class.getClassLoader().getResourceAsStream("config.properties"));
-			properties.load(Hook.class.getClassLoader().getResourceAsStream("serenity.properties"));
+			properties.load(new FileInputStream("serenity.properties"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
