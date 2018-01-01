@@ -23,7 +23,10 @@ Interested in where Brick is heading in the future? Check out the Roadmap
 
 # Project History, Credits & Inspiration
 History: Comming soon
+
 Credits: Serenity Framework
+
+Inspiration: mabl
 
 # Troubleshooting
 We put together a troubleshooting guide. Please have a look here first if you run into any problems. It contains instructions for checking a lot of common errors and how to get in touch with the community if you're stumped.
