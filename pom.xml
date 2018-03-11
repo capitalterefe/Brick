@@ -40,10 +40,11 @@
 			<version>1.2.16</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
-<build>
+	<build>
+	
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -63,17 +64,14 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.20</version>
 				<configuration>
-					<forkCount>15</forkCount>
-					<reuseForks>true</reuseForks>
-					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-					<includes>
-						<include>**/*.java</include>
-					</includes>
-					<argLine>-Xmx512m</argLine>
+					<parallel>classes</parallel>
+					<threadCount>4</threadCount>
+					<perCoreThreadCount>true</perCoreThreadCount>
 				</configuration>
 				<executions>
 					<execution>
@@ -84,8 +82,31 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
+ <plugin>
+                <groupId>com.github.temyers</groupId>
+                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                <version>4.2.0</version>
+                <executions>
+                    <execution>
+                        <id>generateRunners</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generateRunners</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Mandatory -->
+                            <!-- List of package names to scan for glue code. -->
+                            <glue>
+                            
+                                <package>com.brick</package>
+                            </glue>
+                            <parallelScheme>SCENARIO</parallelScheme>
+                            <customVmTemplate>src/test/resources/cucumber-serenity-runner.vm</customVmTemplate>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			
 			<plugin>
 				<groupId>net.serenity-bdd.maven.plugins</groupId>
 				<artifactId>serenity-maven-plugin</artifactId>
@@ -101,6 +122,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+		
 	</build>
 
 
