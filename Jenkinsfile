@@ -10,7 +10,7 @@ agent any
 	stages{
         stage('Git Check-Out') {
             steps {
-                  git branch: 'AP_1.3', url: 'ssh://git@bitbucket.opps.gtwy.dcn:7999/cta/central-sign-on.git'
+                  git branch: 'master', url: 'https://github.com/capitalterefe/Brick.git'
             }
         }
 
@@ -31,7 +31,7 @@ agent any
         stage('Run Automated Tests') {
             steps {
                 script {
-                    sh "mvn -Dwebdriver.remote.url=http://${IP_HUB}:4444/wd/hub -DcourtId=$courtId -Dcucumber.options=--tags\" $tag\" -Dwebdriver.remote.driver=chrome -Dmaven.test.failure.ignore clean verify"
+                    sh "mvn -Dwebdriver.remote.url=http://${IP_HUB}:4444/wd/hub -Dcucumber.options=--tags\" $tag\" -Dwebdriver.remote.driver=chrome -Dmaven.test.failure.ignore clean verify"
                
                 }
             }
@@ -55,7 +55,7 @@ agent any
    				   
   				   //kick Bamboo
   				    withCredentials([usernameColonPassword(credentialsId: 'bambooCredentials', variable: 'bambooUser')]) {
-                    sh 'curl -k -X POST -u $bambooUser  https://bamboo.opps.gtwy.dcn/rest/api/latest/queue/CMTEST-"$PlanId"?os_authType=basic'
+                    sh 'curl -k -X POST -u $bambooUser  https://bamboo.gtwy/rest/api/latest/queue/CMTEST-"$PlanId"?os_authType=basic'
                     }
 
   		       }
