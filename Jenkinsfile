@@ -70,6 +70,6 @@ agent any
           // mail to: team@example.com, subject: 'The Pipeline failed :('
         		}
     }
-    		}
-    }
+    		
+    
     
