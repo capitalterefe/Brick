@@ -18,7 +18,7 @@ agent any
             steps {
                  sshagent(['dockerLocalHost'])  {
                     script {
-    			    GRIDPARAMS = sh (script: 'ssh -tt test_team@automationap /opt/ap-selenium_grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
+    			    GRIDPARAMS = sh (script: 'ssh -tt ec2-user@52.87.242.36 /opt/grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
     			    println("Grid parameters: ${GRIDPARAMS}")
     			    int top = GRIDPARAMS.size()
     			    IP_HUB = "${GRIDPARAMS[top-2]}"
@@ -46,7 +46,7 @@ agent any
                      
                 // stop grid     
 				sshagent(['dockerLocalHost']) {
-    				sh "ssh -tt test_team@automationap /opt/ap-selenium_grid/stop_grid.sh $NETWORK"
+    				sh "ssh -tt ec2-user@52.87.242.36 /opt/grid/stop_grid.sh $NETWORK"
 
   				   } 
    				   
@@ -54,8 +54,8 @@ agent any
   				    sh 'chmod -R 755 "${WORKSPACE}"/target/site/serenity/'
    				   
   				   //kick Bamboo
-  				    withCredentials([usernameColonPassword(credentialsId: 'bambooCredentials', variable: 'bambooUser')]) {
-                    sh 'curl -k -X POST -u $bambooUser  https://bamboo.gtwy/rest/api/latest/queue/CMTEST-"$PlanId"?os_authType=basic'
+  				//    withCredentials([usernameColonPassword(credentialsId: 'bambooCredentials', variable: 'bambooUser')]) {
+               //     sh 'curl -k -X POST -u $bambooUser  https://bamboo.gtwy/rest/api/latest/queue/CMTEST-"$PlanId"?os_authType=basic'
                     }
 
   		       }
