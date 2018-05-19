@@ -56,7 +56,7 @@ agent any
   				   //kick Bamboo
   				//    withCredentials([usernameColonPassword(credentialsId: 'bambooCredentials', variable: 'bambooUser')]) {
                //     sh 'curl -k -X POST -u $bambooUser  https://bamboo.gtwy/rest/api/latest/queue/CMTEST-"$PlanId"?os_authType=basic'
-                    }
+              //      }
 
   		       }
    		       
@@ -71,5 +71,5 @@ agent any
         		}
     }
     		
-    
+    }
     
