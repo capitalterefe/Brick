@@ -18,7 +18,7 @@ agent any
             steps {
                  sshagent(['dockerLocalHost'])  {
                     script {
-    			    GRIDPARAMS = sh (script: 'ssh -tt ec2-user@52.87.242.36 /opt/grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
+    			    GRIDPARAMS = sh (script: 'ssh -tt ec2-user@52.91.79.70 /opt/grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
     			    println("Grid parameters: ${GRIDPARAMS}")
     			    int top = GRIDPARAMS.size()
     			    IP_HUB = "${GRIDPARAMS[top-2]}"
@@ -46,7 +46,7 @@ agent any
                      
                 // stop grid     
 				sshagent(['dockerLocalHost']) {
-    				sh "ssh -tt ec2-user@52.87.242.36 /opt/grid/stop_grid.sh $NETWORK"
+    				sh "ssh -tt ec2-user@52.91.79.70 /opt/grid/stop_grid.sh $NETWORK"
 
   				   } 
    				   
@@ -65,7 +65,7 @@ agent any
         	sh 'echo Pipeline Failed'
         	// stop grid     
 				sshagent(['dockerLocalHost']) {
-    				sh "ssh -tt test_team@automationap /opt/ap-selenium_grid/stop_grid.sh $NETWORK"
+    				sh "ssh -tt ec2-user@52.91.79.70 /opt/grid/stop_grid.sh $NETWORK"
   				   } 
           // mail to: team@example.com, subject: 'The Pipeline failed :('
         		}
