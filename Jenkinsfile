@@ -14,7 +14,7 @@ agent any
             }
         }
 
-        stage('Spin-Up Selenium-Grid Containers') {
+       /* stage('Spin-Up Selenium-Grid Containers') {
             steps {
                  sshagent(['dockerLocalHost'])  {
                     script {
@@ -27,7 +27,7 @@ agent any
                     }
                 }
             }
-        }
+        }*/
         stage('Run Automated Tests') {
             steps {
                 script {
