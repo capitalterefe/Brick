@@ -40,7 +40,7 @@ agent any
     
     post() {
         always {
-                //publish serenity Report locally
+                //publish serenity Report
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/serenity', reportFiles: 'index.html', reportName: 'Serenity Test Report', reportTitles: ''])
                 junit '**/*.xml'
                      
