@@ -25,15 +25,17 @@ agent any
     			    NETWORK = "${GRIDPARAMS[top-1]}"
     			    println("Grid parameters: $IP_HUB / $NETWORK")
                     }
-	            script {
-                    sh "mvn -Dwebdriver.remote.url=http://${IP_HUB}:4444/wd/hub -Dcucumber.options=--tags\" $tag\" -Dwebdriver.remote.driver=chrome -Dmaven.test.failure.ignore clean verify"
-		    
-                }
-			 
                 }
             }
         }
-        
+        stage('Run Automated Tests') {
+            steps {
+                script {
+                    sh "mvn -Dwebdriver.remote.url=http://${IP_HUB}:4444/wd/hub -Dcucumber.options=--tags\" $tag\" -Dwebdriver.remote.driver=chrome -Dmaven.test.failure.ignore clean verify"
+               
+                }
+            }
+        }
   }
     
     post() {
@@ -70,4 +72,3 @@ agent any
     }
     		
     }
-    
