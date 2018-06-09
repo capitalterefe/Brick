@@ -18,7 +18,7 @@ agent any
             steps {
                  sshagent(['dockerLocalHost'])  {
                     script {
-    			    GRIDPARAMS = sh (script: 'ssh -tt yeshiwase_ayele@35.207.6.62 /opt/grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
+    			    GRIDPARAMS = sh (script: 'ssh -tt jenkins@35.207.6.62 /opt/grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
     			    println("Grid parameters: ${GRIDPARAMS}")
     			    int top = GRIDPARAMS.size()s
     			    IP_HUB = "${GRIDPARAMS[top-2]}"
@@ -46,7 +46,7 @@ agent any
                      
                 // stop grid     
 				sshagent(['dockerLocalHost']) {
-    				sh "ssh -tt yeshiwase_ayele@35.207.6.62 /opt/grid/stop_grid.sh $NETWORK"
+    				sh "ssh -tt jenkins@35.207.6.62 /opt/grid/stop_grid.sh $NETWORK"
 
   				   } 
    				   
