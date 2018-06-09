@@ -27,7 +27,7 @@ agent any
                     }
 	            script {
                     sh "mvn -Dwebdriver.remote.url=http://${IP_HUB}:4444/wd/hub -Dcucumber.options=--tags\" $tag\" -Dwebdriver.remote.driver=chrome -Dmaven.test.failure.ignore clean verify"
-		    }
+		    
                 }
 			 
                 }
