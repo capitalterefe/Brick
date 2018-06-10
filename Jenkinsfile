@@ -20,7 +20,7 @@ agent any
                     script {
     			    GRIDPARAMS = sh (script: 'ssh -tt jenkins@35.207.6.62 /opt/grid/start_grid.sh "$numberOfRunners"', returnStdout: true).split("\r?\n")
     			    println("Grid parameters: ${GRIDPARAMS}")
-    			    int top = GRIDPARAMS.size()s
+    			    int top = GRIDPARAMS.size()
     			    IP_HUB = "${GRIDPARAMS[top-2]}"
     			    NETWORK = "${GRIDPARAMS[top-1]}"
     			    println("Grid parameters: $IP_HUB / $NETWORK")
