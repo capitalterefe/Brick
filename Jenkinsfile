@@ -65,7 +65,7 @@ agent any
         	sh 'echo Pipeline Failed'
         	// stop grid     
 				sshagent(['dockerLocalHost']) {
-    				sh "ssh -tt yeshiwase_ayele@35.207.6.62 /opt/grid/stop_grid.sh $NETWORK"
+    				sh "ssh -tt jenkins@35.207.6.62 /opt/grid/stop_grid.sh $NETWORK"
   				   } 
           // mail to: team@example.com, subject: 'The Pipeline failed :('
         		}
