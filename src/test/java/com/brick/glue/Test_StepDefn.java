@@ -24,6 +24,11 @@ public class Test_StepDefn {
 		petClinic_HomePage.navigateToOwnerRegistrationPage();
 		petClinic_HomePage.completeOwnersRegistrationForm(ownerInformation);
 	}
+	@Given("^Admin Should Able To Search A Registered Owner with FirstName$")
+	public void searchByFirstName(List<CucumberParams> ownerInformation) {
+		petClinic_HomePage.searchByFirst_name(ownerInformation);
+		petClinic_HomePage.openOwnerInfo();
+	}
 	@Given("^I am on Google App Home Page$")
 	public void onGoogleHomePage() {
 		test_Page3.navigateToGoogleApp();

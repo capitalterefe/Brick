@@ -5,5 +5,8 @@ Given Admin Is on Pet Clinic Home Page
 When Admin Register A New Owner 
 |firstName|lastName|address|city|telephone	|
 |Tst	  |lst	   |125	   |lxt	|202		|
-#Then New Registered User Should be Displayed Under Owners List 
+Then Admin Should Able To Search A Registered Owner with FirstName 
+|firstName|
+|Tst	  |
+
 

@@ -16,6 +16,8 @@ public class PetClinic_HomePage extends WebDriverHelper{
 	 By cityElement=By.xpath("//input[@name='city']");
 	 By telephoneElement=By.xpath("//input[@name='telephone']");
 	 By submitElement=By.xpath("//button[text()='Submit']");
+	 By searchBox=By.xpath("//input[@placeholder='Search Filter']");
+	 By owner_1=By.xpath("//tr[@class='ng-scope'][1]//a");
 	public void navigateToPetsClinicApp() {
 		driver.navigate().to(properties.getProperty("petClinicUrl"));
 	}
@@ -33,6 +35,13 @@ public class PetClinic_HomePage extends WebDriverHelper{
 		typeInto(telephoneElement,ownerInformation.get(0).getTelephone());
 		clickOn(submitElement);
 		
+	}
+	
+	public void searchByFirst_name(List<CucumberParams>ownerInformation) {
+		typeInto(searchBox,ownerInformation.get(0).getFirstName());
+	}
+	public void openOwnerInfo() {
+		clickOn(owner_1);
 	}
 
 }
