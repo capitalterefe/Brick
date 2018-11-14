@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import com.brick.reusablecomponents.CucumberParams;
 import com.brick.reusablecomponents.WebDriverHelper;
 
+import net.serenitybdd.core.Serenity;
+
 public class PetClinic_HomePage extends WebDriverHelper{
 	 By ownersLink=By.xpath("//a[contains(text(),'Owners')]");
 	 By allOwners=By.xpath("//a[@href='#!/owners']");
@@ -58,22 +60,27 @@ public class PetClinic_HomePage extends WebDriverHelper{
 	public void searchByFirst_name(List<CucumberParams>ownerInformation) {
 		navigateToOwnerSearchPage();
 		typeInto(searchBox,ownerInformation.get(0).getFirstName());
+		Serenity.takeScreenshot();
 	}
 	public void searchByLast_name(List<CucumberParams>ownerInformation) {
 		navigateToOwnerSearchPage();
 		typeInto(searchBox,ownerInformation.get(0).getLastName());
+		Serenity.takeScreenshot();
 	}
 	public void searchByAddress	(List<CucumberParams>ownerInformation) {
 		navigateToOwnerSearchPage();
 		typeInto(searchBox,ownerInformation.get(0).getAddress());
+		Serenity.takeScreenshot();
 	}
 	public void searchByCity(List<CucumberParams>ownerInformation) {
 		navigateToOwnerSearchPage();
 		typeInto(searchBox,ownerInformation.get(0).getCity());
+		Serenity.takeScreenshot();
 	}
 	public void searchByTelephone(List<CucumberParams>ownerInformation) {
 		navigateToOwnerSearchPage();
 		typeInto(searchBox,ownerInformation.get(0).getTelephone());
+		Serenity.takeScreenshot();
 	}
 	public boolean verifyRegistrationSucceed() {
 		return isDisplayed(owner_1);
