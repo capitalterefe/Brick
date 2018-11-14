@@ -9,6 +9,7 @@ import com.brick.reusablecomponents.WebDriverHelper;
 
 public class PetClinic_HomePage extends WebDriverHelper{
 	 By ownersLink=By.xpath("//a[contains(text(),'Owners')]");
+	 By allOwners=By.xpath("//a[@href='#!/owners']");
 	 By registerLink=By.xpath("//span[contains(text(),'Register')]");
 	 By firstNameElement=By.xpath("//input[@name='firstName']");
 	 By lastNameElement=By.xpath("//input[@name='lastName']");
@@ -18,15 +19,32 @@ public class PetClinic_HomePage extends WebDriverHelper{
 	 By submitElement=By.xpath("//button[text()='Submit']");
 	 By searchBox=By.xpath("//input[@placeholder='Search Filter']");
 	 By owner_1=By.xpath("//tr[@class='ng-scope'][1]//a");
+	 By owner_information_title=By.xpath("//h2[text()='Owner Information']");
 	public void navigateToPetsClinicApp() {
 		driver.navigate().to(properties.getProperty("petClinicUrl"));
 	}
 
-	public void navigateToOwnerRegistrationPage() {
+	public boolean navigateToOwnerRegistrationPage() {
 		clickOn(ownersLink);
 		clickOn(registerLink);
+		return isUserOnRegistrationPage();
 		
 	}
+	public boolean navigateToOwnerSearchPage() {
+		clickOn(ownersLink);
+		clickOn(allOwners);
+		return isUserOnOwnersSearchPage();
+		
+	}
+	private boolean isUserOnRegistrationPage() {
+				sleep(2000);
+				return isDisplayed(firstNameElement);
+	}
+	private boolean isUserOnOwnersSearchPage() {
+		sleep(2000);
+		return isDisplayed(searchBox);
+	}
+
 	public void completeOwnersRegistrationForm(List<CucumberParams> ownerInformation) {
 		typeInto(firstNameElement,ownerInformation.get(0).getFirstName());
 		typeInto(lastNameElement,ownerInformation.get(0).getLastName());
@@ -38,10 +56,39 @@ public class PetClinic_HomePage extends WebDriverHelper{
 	}
 	
 	public void searchByFirst_name(List<CucumberParams>ownerInformation) {
+		navigateToOwnerSearchPage();
 		typeInto(searchBox,ownerInformation.get(0).getFirstName());
 	}
-	public void openOwnerInfo() {
-		clickOn(owner_1);
+	public void searchByLast_name(List<CucumberParams>ownerInformation) {
+		navigateToOwnerSearchPage();
+		typeInto(searchBox,ownerInformation.get(0).getLastName());
+	}
+	public void searchByAddress	(List<CucumberParams>ownerInformation) {
+		navigateToOwnerSearchPage();
+		typeInto(searchBox,ownerInformation.get(0).getAddress());
+	}
+	public void searchByCity(List<CucumberParams>ownerInformation) {
+		navigateToOwnerSearchPage();
+		typeInto(searchBox,ownerInformation.get(0).getCity());
+	}
+	public void searchByTelephone(List<CucumberParams>ownerInformation) {
+		navigateToOwnerSearchPage();
+		typeInto(searchBox,ownerInformation.get(0).getTelephone());
+	}
+	public boolean verifyRegistrationSucceed() {
+		return isDisplayed(owner_1);
+	}
+	public boolean verifyOwnerInfoSearch() {
+		if(isDisplayed(owner_1)) {
+			clicksOn(owner_1);
+			sleep(2000);
+		   return	isDisplayed(owner_information_title);
+			
+		}
+		else {
+			return false;
+		}
+				
 	}
 
 }

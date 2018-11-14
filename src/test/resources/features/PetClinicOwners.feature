@@ -1,12 +1,27 @@
 Feature: Manage Pet Owners Information From The Dashboard
-@test
+@dryRun
 Scenario: Register A new Pet Owner
 Given Admin Is on Pet Clinic Home Page 
 When Admin Register A New Owner 
-|firstName|lastName|address|city|telephone	|
-|Tst	  |lst	   |125	   |lxt	|202		|
-Then Admin Should Able To Search A Registered Owner with FirstName 
+|firstName|lastName|address			 |city		|telephone		|
+|John	  |Doe	   |125 Smooth Dr	 |citi		|2022300010		|
+Then Admin Verify Newly Registered User Exist in the Database 
 |firstName|
-|Tst	  |
+|John 	  |
+Then Admin Should Able To Search A Registered Owner with FirstName 
+|firstName |
+|John	 	 |
+Then Admin Should Able To Search A Registered Owner with LastName 
+|lastName		  |
+|Doe			  |
+Then Admin Should Able To Search A Registered Owner with Address
+|address	  	  |
+|125 Smooth Dr	  |
+Then Admin Should Able To Search A Registered Owner with City
+|city	  |
+|citi	  |
+Then Admin Should Able To Search A Registered Owner with Telephone
+|telephone		|
+|2022300010	    |
 
 
