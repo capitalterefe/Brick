@@ -36,6 +36,16 @@ public class Test_StepDefn {
 		petClinic_HomePage.searchByFirst_name(ownerInformation);
 		assertTrue("Search Owner By First Name Failed",petClinic_HomePage.verifyOwnerInfoSearch());
 	}
+	@Given("^Admin Should Be Able To Add New Pet To Owner$")
+	public void addNewPet(List<CucumberParams> ownerInformation) {
+		petClinic_HomePage.addNewPet(ownerInformation);
+		assertTrue("New Pet Not Added",petClinic_HomePage.verifyNewPetAdded(ownerInformation));
+	}
+	@Given("^Admin Should be Able To Add a new Visit To A Pet$")
+	public void addvisitToPet(List<CucumberParams> ownerInformation) {
+		petClinic_HomePage.addNewVisit(ownerInformation);
+		assertTrue("New Pet Vist Not Added",petClinic_HomePage.verifyVisitAdded(ownerInformation));
+	}
 	@Given("^Admin Should Able To Search A Registered Owner with LastName$")
 	public void searchByLastName(List<CucumberParams> ownerInformation) {
 		petClinic_HomePage.searchByLast_name(ownerInformation);

@@ -1,5 +1,5 @@
 Feature: Manage Pet Owners Information From The Dashboard
-@dryRun
+@test
 Scenario: Register A new Pet Owner
 Given Admin Is on Pet Clinic Home Page 
 When Admin Register A New Owner 

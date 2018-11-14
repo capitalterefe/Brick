@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import net.serenitybdd.core.Serenity;
@@ -219,6 +220,12 @@ public class WebDriverHelper extends PageObject{
 		sleep(1000);
 		clicksOn(selectElementFromPanel);
 
+	}
+	public void selectOneByText(By byelement, String visibleText) {
+		WebElement element = driver.findElement(byelement);
+		Select select=new Select(element);
+		select.selectByVisibleText(visibleText);
+		
 	}
 
 	public boolean selectCheckBoxByIndex(int position) {
